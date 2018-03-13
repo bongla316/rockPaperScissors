@@ -1,69 +1,15 @@
-<script>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Rock Paper Scissors</title>
+    </head>
 
-    function game(){
-        function computerPlay() {
-        var choice = Math.floor(Math.random() * (3)) + 1;
-        
-        if (choice == 1) {
-            return "ROCK";
-        }
-
-        if (choice == 2) {
-            return "PAPER";
-        }
-        
-        if (choice == 3) {
-            return "SCISSORS";
-        }
-    }
-
-    function playRound(playerSelection, computerSelection) {
-
-        if (playerSelection == computerSelection) {
-            return "The round was a draw!";
-        }
-
-        else if ((playerSelection == "ROCK" && computerSelection == "SCISSORS") ||
-                 (playerSelection == "PAPER" && computerSelection == "ROCK") ||
-                 (playerSelection == "SCISSORS" && computerSelection == "PAPER")) {
-
-                     if (playerSelection == "ROCK") {
-                         return "Rock beats Scissors, Player wins!";
-                     }
-
-                     if (playerSelection == "PAPER") {
-                         return "Paper beats Rock, Player wins!";
-                     }
-
-                     if (playerSelection == "SCISSORS") {
-                         return "Scissors beats Paper, Player wins!";
-                     }
-
-        }
-
-        else if ((computerSelection == "ROCK" && playerSelection == "SCISSORS") ||
-                 (computerSelection == "PAPER" && playerSelection == "ROCK") ||
-                 (computerSelection == "SCISSORS" && playerSelection == "PAPER")) {
-
-                     if (computerSelection == "ROCK") {
-                         return "Rock beats Scissors, Computer wins!";
-                     }
-
-                     if (computerSelection == "PAPER") {
-                         return "Paper beats Rock, Computer wins!";
-                     }
-
-                     if (computerSelection == "SCISSORS") {
-                         return "Scissors beats Paper, Computer wins!";
-                     }
-                     
-        }
-    }
-
-    var computerChoice = computerPlay().toUpperCase();
-    var playerChoice =  prompt("Please enter your chioce", "Rock, Paper or Scissors").toUpperCase();
-
-    console.log(playRound(playerChoice, computerChoice));
-    }
-    
-</script>
+    <body>
+        <button id="r">Rock</button>
+        <button id="p">Paper</button>
+        <button id="s">Scissors</button>
+        <script src="script.js"></script>
+    </body>
+</html>
