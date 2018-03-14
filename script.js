@@ -37,6 +37,7 @@ function playRound(playerSelection) {
     console.log(computerSelection);
 
     if (playerSelection == computerSelection) {
+        displayResult(playerSelection, computerSelection, 0);
         return "The round was a draw!";
     }
 
@@ -44,17 +45,19 @@ function playRound(playerSelection) {
         (playerSelection == "PAPER" && computerSelection == "ROCK") ||
         (playerSelection == "SCISSORS" && computerSelection == "PAPER")) {
 
-        if (playerSelection == "ROCK") {
-            return "Rock beats Scissors, Player wins!";
-        }
+        //if (playerSelection == "ROCK") {
+            displayResult(playerSelection, computerSelection, 1);
+            //return "Rock beats Scissors, Player wins!";
+        //}
 
-        if (playerSelection == "PAPER") {
-            return "Paper beats Rock, Player wins!";
-        }
+        //if (playerSelection == "PAPER") {
+            
+            //return "Paper beats Rock, Player wins!";
+        //}
 
-        if (playerSelection == "SCISSORS") {
-            return "Scissors beats Paper, Player wins!";
-        }
+        //if (playerSelection == "SCISSORS") {
+            //return "Scissors beats Paper, Player wins!";
+        //}
 
     }
 
@@ -62,17 +65,40 @@ function playRound(playerSelection) {
         (computerSelection == "PAPER" && playerSelection == "ROCK") ||
         (computerSelection == "SCISSORS" && playerSelection == "PAPER")) {
 
-        if (computerSelection == "ROCK") {
-            return "Rock beats Scissors, Computer wins!";
-        }
+            displayResult(playerSelection, computerSelection, 2);
 
-        if (computerSelection == "PAPER") {
-            return "Paper beats Rock, Computer wins!";
-        }
+        //if (computerSelection == "ROCK") {
+            //return "Rock beats Scissors, Computer wins!";
+        //}
 
-        if (computerSelection == "SCISSORS") {
-            return "Scissors beats Paper, Computer wins!";
-        }
+        //if (computerSelection == "PAPER") {
+            //return "Paper beats Rock, Computer wins!";
+        //}
 
+        //if (computerSelection == "SCISSORS") {
+            //return "Scissors beats Paper, Computer wins!";
+        //}
+
+    }
+}
+
+function displayResult(playerChoice, computerChoice, winner) {
+
+    if (winner == 0){
+        var result = "The round was a draw";
+        var textNode = document.createTextNode(result);
+        document.getElementById("displayResult").appendChild(textNode);
+    }
+
+    else if (winner == 1){
+        var result = playerChoice + " beats " + computerChoice + "! Player wins!";
+        var textNode = document.createTextNode(result);
+        document.getElementById("displayResult").appendChild(textNode);
+    }
+
+    else if (winner == 2){
+        var result = computerChoice + " beats " + playerChoice + "! Computer wins!";
+        var textNode = document.createTextNode(result);
+        document.getElementById("displayResult").appendChild(textNode);
     }
 }
