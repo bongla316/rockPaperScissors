@@ -103,11 +103,13 @@ function displayResult(playerChoice, computerChoice, winner) {
 
 function winnerCheck(cScore, pScore){
     if (cScore == 5) {
-        console.log("Computer wins the match!");
+        document.getElementById("instructions").innerHTML = "Computer wins the match! Press restart to try again";
+        addRestartButton();
     }
 
     if (pScore == 5) {
-        console.log("Player wins the match!");
+        document.getElementById("instructions").innerHTML = "Player wins the match! Press restart to play again";
+        addRestartButton();
     }
 
     else {
@@ -118,4 +120,25 @@ function winnerCheck(cScore, pScore){
 function updateScoreboard(cScore, pScore){
     document.getElementById("scorePlayer").innerHTML = pScore;
     document.getElementById("scoreComputer").innerHTML = cScore;
+}
+
+function addRestartButton() {
+
+    document.getElementById("weapons").innerHTML = '';
+    var node = document.createElement("button");
+    var textNode = document.createTextNode("Restart Match");
+    node.id = "restartButton";
+    node.appendChild(textNode);
+    document.getElementById("weapons").appendChild(node);
+    document.querySelector("#restartButton").addEventListener("click", reset);
+}
+
+//function restartButton(){
+//    document.getElementById("restartButton").onclick = reset();    
+//}
+
+function reset(){
+
+    updateScoreboard(0 , 0);
+
 }
