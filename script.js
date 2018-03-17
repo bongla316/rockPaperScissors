@@ -5,6 +5,10 @@ document.querySelector("#s").addEventListener("click", playerScissors);
 var computerScore = 0;
 var playerScore = 0;
 var currentRound = 0;
+var RPSButtons = document.getElementById("weapons").innerHTML;
+var initialScoreboardState = document.getElementById("scoreBoard").innerHTML;
+var initialInstructions = document.getElementById("instructions").innerHTML;
+
 
 function playerRock() {
     playRound("ROCK");
@@ -46,7 +50,7 @@ function playRound(playerSelection) {
         (playerSelection == "PAPER" && computerSelection == "ROCK") ||
         (playerSelection == "SCISSORS" && computerSelection == "PAPER")) {
 
-            displayResult(playerSelection, computerSelection, 1);
+        displayResult(playerSelection, computerSelection, 1);
 
     }
 
@@ -54,7 +58,7 @@ function playRound(playerSelection) {
         (computerSelection == "PAPER" && playerSelection == "ROCK") ||
         (computerSelection == "SCISSORS" && playerSelection == "PAPER")) {
 
-            displayResult(playerSelection, computerSelection, 2);
+        displayResult(playerSelection, computerSelection, 2);
 
     }
 }
@@ -63,8 +67,8 @@ function displayResult(playerChoice, computerChoice, winner) {
 
     currentRound += 1;
 
-    if (winner == 0){
-        
+    if (winner == 0) {
+
         var result = "The round was a draw";
         var node = document.createElement("p");
         var textNode = document.createTextNode(result);
@@ -73,7 +77,7 @@ function displayResult(playerChoice, computerChoice, winner) {
         document.getElementById("resultDisplay").appendChild(node);
     }
 
-    else if (winner == 1){
+    else if (winner == 1) {
         var result = playerChoice + " beats " + computerChoice + "! Player wins!";
         var node = document.createElement("p");
         var textNode = document.createTextNode(result);
@@ -81,13 +85,13 @@ function displayResult(playerChoice, computerChoice, winner) {
 
         document.getElementById("resultDisplay").appendChild(node);
         playerScore += 1;
-        
+
         updateScoreboard(computerScore, playerScore);
         winnerCheck(computerScore, playerScore);
 
     }
 
-    else if (winner == 2){
+    else if (winner == 2) {
         var result = computerChoice + " beats " + playerChoice + "! Computer wins!";
         var node = document.createElement("p");
         var textNode = document.createTextNode(result);
@@ -101,7 +105,7 @@ function displayResult(playerChoice, computerChoice, winner) {
     }
 }
 
-function winnerCheck(cScore, pScore){
+function winnerCheck(cScore, pScore) {
     if (cScore == 5) {
         document.getElementById("instructions").innerHTML = "Computer wins the match! Press restart to try again";
         addRestartButton();
@@ -117,7 +121,7 @@ function winnerCheck(cScore, pScore){
     }
 }
 
-function updateScoreboard(cScore, pScore){
+function updateScoreboard(cScore, pScore) {
     document.getElementById("scorePlayer").innerHTML = pScore;
     document.getElementById("scoreComputer").innerHTML = cScore;
 }
@@ -133,12 +137,36 @@ function addRestartButton() {
     document.querySelector("#restartButton").addEventListener("click", reset);
 }
 
-//function restartButton(){
-//    document.getElementById("restartButton").onclick = reset();    
-//}
+function clearDiv(divID) {
+    var div = document.getElementById(divID);
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+}
 
-function reset(){
+function addRPSButtons() {
+    clearDiv("weapons");
+    document.getElementById("weapons").innerHTML = RPSButtons;
+}
 
-    updateScoreboard(0 , 0);
+function addNewScoreboard() {
+    clearDiv("scoreBoard");
+    document.getElementById("scoreBoard").innerHTML = initialScoreboardState;
+}
 
+function addInstructions(){
+    clearDiv("instructions");
+    document.getElementById("instructions").innerHTML = initialInstructions;
+}
+
+function reset() {
+    clearDiv("resultDisplay");
+    addInstructions();
+    addRPSButtons();
+    addNewScoreboard();
+    computerScore = 0;
+    playerScore = 0;
+    document.querySelector("#r").addEventListener("click", playerRock);
+    document.querySelector("#p").addEventListener("click", playerPaper);
+    document.querySelector("#s").addEventListener("click", playerScissors);
 }
